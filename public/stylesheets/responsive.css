@@ -1,0 +1,278 @@
+/*  Main section */
+@media screen and (max-width: 2652px) {
+    .pair-set {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .link {
+        font-size: 18px;
+    }
+    header nav{
+        display: block;
+    }
+
+}
+@media screen and (max-width: 2244px) {
+    .pair-set {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+@media screen and (max-width: 1683px) {
+    .pair-set {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .link {
+        font-size: 14px;
+    }
+}
+
+
+
+@media screen and (max-width: 1360px) {
+    .space {
+        margin: 20px 0px;
+    }
+  
+}
+
+@media screen and (max-width: 1286px) {
+    .card {
+        width: 325px;
+        height: 300px;
+    }
+
+    .card img {
+        height: 125px;
+    }
+
+    .link {
+        font-size: 13px;
+    }
+    .card-title{
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 974px) {
+    .card {
+        width: 300px;
+        height: 300px;
+    }
+
+    .card img {
+        height: 125px;
+    }
+
+    .link {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 929px) {
+    .card {
+        width: 275px;
+    }
+
+    .card img {
+        height: 125px;
+    }
+}
+
+@media screen and (max-width: 854px) {
+    .card {
+        width: 419px;
+        height: 400px;
+    }
+
+    .card img {
+        height: 175px;
+    }
+
+    .pair-set {
+        flex-direction: column;
+    }
+
+    .link {
+        font-size: 15px;
+    }
+    .card-title{
+        height: 68px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .card {
+        width: 300px;
+        height: 300px;
+    }
+
+    .card img {
+        height: 125px;
+    }
+
+    .link {
+        font-size: 12px;
+    }
+    .card-title{
+        height: 100px;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .card {
+        width: 275px;
+    }
+
+    .card img {
+        height: 125px;
+    }
+
+}
+
+/*header Section*/
+
+@media screen and (max-width: 925px) {
+    .header-fixed{
+        height: 250px;
+    }
+    .header-limiter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header nav {
+        margin-left: 70px;
+    }
+
+    .name {
+        margin-bottom: 20px;
+    }
+
+    .float-left {
+        padding-bottom: 20px;
+
+    }
+    .header-detail{
+        flex-direction: column;
+    }
+    .header-fixed .header-limiter .float-left {
+        margin-right: 25px;
+    }
+}
+@media screen and (max-width: 516px) {
+    .header-fixed{
+        height: 150px;
+        padding-bottom: 0;
+    }
+    .header-limiter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .name{
+        display: none;
+    }
+    header nav{
+        display: none;
+    }
+    .float{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .float-right svg{
+        display: flex;
+        justify-content: right;
+    }
+    .float-right {
+        margin-right: 25px;
+    }
+}
+
+/* Footer Section*/
+
+@media screen and (max-width: 648px) {
+    .footer-vertically{
+        flex-direction: column;
+    }
+
+}
+@media screen and (max-width: 418px) {
+    .footer-content-colum-links{
+        flex-direction: column;
+    }
+
+}
+
+
+/* Blog Content */
+
+@media screen and (max-width: 2652px) {
+    .blog-text-overview{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 1340px) {
+    .blog-text-overview{
+        font-size: 17px;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    .blog-content-image{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .blog-overview-image{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .blog-content-image img{
+        margin-bottom: 30px;
+    }
+    .blog-overview-image{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .blog-overview-image img{
+        margin-bottom: 30px;
+    }
+    .blog-text-overview{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 782px) {
+    .collection{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 782px) {
+    main h1{
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: 382px) {
+    .blog-content-image img{
+        width: 100% !important;
+        object-fit: contain;
+    }
+}
+@media screen and (max-width: 340px) {
+    main h1{
+        font-size: 20px;
+    }
+}
+
+
+
+/* Contact Page */
+
+
+
+
+

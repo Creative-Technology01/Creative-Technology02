@@ -1,0 +1,54 @@
+.flex{
+    display: flex;
+}
+.space-evenly{
+    justify-content: space-evenly;
+}
+.justify-center{
+    justify-content: center;
+}
+.align-center{
+    align-items: center;
+}
+.block{
+    display: block;
+}
+.m-tb{
+    margin: 20px 0;
+}
+.text-center{
+    text-align: center;
+}
+.p-tb{
+    padding: 5px 0;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.space-around{
+    justify-content: space-around;
+}
+.m-b{
+    margin-bottom: 20px;
+}
+.m-lr{
+    margin: 0 2%;
+}
+.bg-black{
+    color: black;
+}
+.he-fifteen{
+    height: 1500px;
+    background-color: red;
+    overflow: hidden;
+}
+.m-auto{
+    margin: auto;
+    /* background-color: black; */
+}
+.m-width{
+    max-width: 60%;
+}
+main a{
+    text-decoration: none;
+}

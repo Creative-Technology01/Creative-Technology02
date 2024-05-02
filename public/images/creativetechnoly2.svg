@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <!-- Circuit Board Shape -->
+  <rect x="20" y="30" width="260" height="140" fill="#004658" />
+
+  <!-- Circuit Lines -->
+  <line x1="50" y1="70" x2="250" y2="70" stroke="#66ccff" stroke-width="2" />
+  <line x1="50" y1="110" x2="250" y2="110" stroke="#66ccff" stroke-width="2" />
+  <line x1="50" y1="150" x2="250" y2="150" stroke="#66ccff" stroke-width="2" />
+
+  <!-- Bolt Shape -->
+  <circle cx="150" cy="130" r="15" fill="#ffcc00" />
+
+  <!-- Text -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="'Lobster', cursive" font-size="28" fill="#fff">CreativeTechnology</text>
+</svg>
+

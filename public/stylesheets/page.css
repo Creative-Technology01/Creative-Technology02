@@ -1,0 +1,56 @@
+.forward-rigth{
+    justify-content: end;
+}
+.forwar-backward{
+    justify-content: space-between;
+}
+.forward {
+    text-align: end;
+    padding: 10px 0px;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    margin-right: 20px;
+    border-radius: 50px;
+    /* transition: all 9s ease; Adjust timing as needed */
+}
+.forward-link{
+    padding: 10px 20px;
+    color: white;
+}
+.forward:hover {
+    background-color: white;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fade-out 2s both;
+}
+.backward{
+    text-align: end;
+    padding: 10px 0px;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    margin-left: 20px;
+    border-radius: 50px;
+}
+.backwward-link{
+    padding: 10px 20px;
+    color: white;
+}
+.backward:hover {
+    background-color: white;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fade-out 2s both;
+
+}
+
+
+
+
+@keyframes fade-out {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

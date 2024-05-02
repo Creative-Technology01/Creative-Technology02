@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.large-8 {
+    width: 70%;
+}
+
+.centered {
+    float: none;
+    margin: 0 auto;
+}
+.about-margin{
+    margin-bottom: 25px;
+}
+.detail p{
+    margin-bottom: 50px;
+}
+.contact-link{
+    padding: 10px 20px;
+    color: white;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    margin-right: 20px;
+    border-radius: 50px;
+}
+.contact-link:hover {
+    background-color: white;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fade-out 2s both;
+}
+.about-name{
+    font-size: 18px !important;
+    font-weight: bolder;
+}
+@keyframes fade-out {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

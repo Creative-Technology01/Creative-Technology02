@@ -1,0 +1,19 @@
+@media screen and (max-width: 594px) {
+    #header{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .logo{
+        width: 90%;
+        text-align: center;
+    }
+    .blog-header-nav{
+        display: block;
+        margin: 0;
+    }
+}
+@media screen and (max-width: 782px) {
+    .container{
+        width: 100%;
+    }
+}

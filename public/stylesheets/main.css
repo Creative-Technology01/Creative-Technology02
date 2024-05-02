@@ -1,0 +1,74 @@
+main{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.card{
+    /* border: 1px solid rgb(46, 46, 46); */
+    /* background-color: purple; */
+    border-radius: 10px;
+    width: 419px;
+    margin-bottom: 20px;
+    height: 400px;
+}
+
+.link{
+    padding: 5px 7px;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+	border-radius: 5px
+}
+.space{
+    margin: 20px 15px;
+}
+.card img{
+    max-width: 100%;
+    object-fit: contain;
+    height: 175px;
+    padding: 10px 0;
+    /* background-color: red; */
+}
+.card-title{
+    height: 68px;
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word !important;
+    color: black !important;
+}
+.card-title h2{
+    word-wrap: break-word;
+    color: black !important;
+}
+.card-text{
+    padding: 10px 0;
+    height: 62px;
+    word-wrap: break-word;
+}
+main h2 a{
+    background: linear-gradient(135deg,rgb(0, 0, 255) ,  rgb(191, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.present-page{
+    font-size: 17px;
+    color: rgb(82, 78, 78);
+    margin-left: 20px;
+    font-weight: bolder;
+}
+.text-center a:hover{
+    animation: fade-out 2s forwards;
+}
+.heading-color{
+    background: linear-gradient(135deg,rgb(0, 0, 255) ,  rgb(191, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+@keyframes fade-out {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

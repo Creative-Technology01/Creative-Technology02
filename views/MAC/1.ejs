@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+      
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MAC: Page(<%= PostPerPage %> out of <%= roundednumber%>) Creative Technology</title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <link rel="stylesheet" href="assets/header-fixed.css">
+        <link rel="stylesheet" href="/stylesheets/utility.css">
+        <link rel="stylesheet" href="/stylesheets/page.css">
+        <link rel="stylesheet" href="/stylesheets/footer.css">
+        <link rel="stylesheet" href="/stylesheets/responsive.css">
+        <link rel="icon" type="image/x-icon" href="/path/to/your/favicon.ico">
+        <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+      
+      </head>
+      
+      <body>
+      
+        <%- include('../header.ejs') %>
+      
+        <main>
+      <span class="present-page">page<%= PostPerPage %></span>
+
+          <h2 class="text-center m-tb heading-color">MAC</h2>
+          <section class="m-b p-tb">
+            <div class="pair-set flex flex-wrap space-evenly">
+                <% finalPosts.reverse().forEach(element=> { %>
+                  <div class="flex space-evenly space">
+                    <div class="3pair-set">
+                      <div class="card">
+                        <img src="/images/upload/<%= element.image %>" class="card-img-top p-tb flex justify-center"
+                          alt="...">
+      
+                        <div class="card-body">
+                          <div class="card-title">
+                            <h2>
+                              <%=element.postheading%>
+                                </h2>
+                          </div>
+                          <p class="card-text p-tb  link-bottom">
+                            <%= element.postname %>
+                          </p>
+                          <div class="flex justify-center">
+                            <a href="/<%= element.postheading %>" class="link">Go somewhere</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% }); %>
+              </div>
+              <div class="forwar-backward flex">
+                <div class="backward">
+                  <a href="/categories/MAC" class="forward-link">Previous Page</a>
+                </div>
+                <% if(post == finalPosts.length){ %>
+                  <div class="forward">
+                    <a href= "<%= PostPerPage+1%>" class="forward-link">Next Page</a>
+                  </div>
+                <% } %>
+              </div>
+          </section>
+      
+        </main>
+      
+        <div class="pg-footer">
+          <%- include('../footer.ejs') %>
+        </div>
+      
+      
+      </body>
+<script src="/javascripts/Index.js"></script>
+
+      </html>

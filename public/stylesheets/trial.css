@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+.heading{
+    /* background-color: red; */
+    padding: 10px 0;
+}
+main{
+    font-family: 'Noto Sans', sans-serif;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.collection{
+    width: 70%;
+}
+.ad{
+    padding: 100px 0;
+}
+main h1{
+    word-wrap: break-word;
+}
+
+.post-item{
+    width: min-content;
+    margin-bottom: 50px;
+    list-style: none;
+}
+
+.blog-content-image{
+    display: flex;
+    justify-content: space-evenly !important;
+}
+.blog-heding{
+    font-family: 'Noto Sans', sans-serif;
+    background: linear-gradient(135deg,rgb(0, 0, 255) ,  rgb(191, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+.overview{
+    /* background-color: red; */
+    padding-bottom: 20px;
+}
+.blog-text-overview{
+    color: grey;
+    font-family: 'Noto Sans', sans-serif;
+}
+.blog-overview-image{
+    display: flex;
+    justify-content: center;
+}
+.forward{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.forward-link{
+    padding: 10px 20px;
+    color: white;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    margin-right: 20px;
+    border-radius: 50px;
+}
+.forward-link:hover {
+    background-color: white;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fade-out 2s both;
+}
+.margin-bottom{
+    margin-bottom: 20px;
+}
+.margin-top{
+    margin-top: 20px;
+}
+.margin-top-bottom{
+    margin: 20px 0;
+}
+.container h1{
+    text-align: center;
+}
+.bold{
+    font-weight: bolder;
+}
+.normal{
+    font-weight: normal;
+}
+.customize{
+    margin: 10px 10px;
+    padding: 0;
+    background: none;
+    color: rgb(195, 195, 195);
+    text-decoration: underline;
+}
+
+
+
+@keyframes fade-out {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

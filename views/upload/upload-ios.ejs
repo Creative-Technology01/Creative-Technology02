@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Creative Technology: Way to learn new things</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="assets/header-fixed.css">
+    <link rel="stylesheet" href="/stylesheets/utility.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.css">
+
+    <link rel="icon" type="image/x-icon" href="/path/to/your/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+    <%- include('header.ejs') %>
+        <form action="/iupload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="iosfile">
+            <input type="text" name="iosheading" placeholder="heading">
+            <input type="text" name="iostext" placeholder="text">
+            <input type="submit" value="submit">
+        </form>
+</body>
+<script src="/javascripts/Index.js"></script>
+
+</html>

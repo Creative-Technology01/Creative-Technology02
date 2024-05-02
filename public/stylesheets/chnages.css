@@ -1,0 +1,14 @@
+.header-limiter {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.name h1 {
+    font: normal 28px Cookie, Arial, Helvetica, sans-serif
+}
+
+.footer-menu-name {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    text-align: left;
+}
