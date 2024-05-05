@@ -43,8 +43,9 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
-// error handler
+connectToMongoDB("mongodb+srv://priteshgupta032:Wr3JMPxIxU3h6yOV@creative-technology.40p6wzw.mongodb.net/Creative-Technology").then(() =>
+  console.log("connected")
+  );// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
