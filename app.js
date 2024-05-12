@@ -12,7 +12,6 @@ var IOSRouter = require('./routes/Posts/IOS');
 var MACRouter = require('./routes/Posts/MAC');
 var windowRouter = require('./routes/Posts/window');
 var usersRouter = require('./routes/DataBase/users');
-// var usersRouter = require('./routes/DataBase/counter');
 var session = require('express-session')
 var app = express();
 app.use(session({
@@ -37,15 +36,12 @@ app.use('/', MACRouter);
 app.use('/', IOSRouter);
 app.use('/', GadgetsRouter);
 app.use('/', GamingRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-connectToMongoDB("mongodb+srv://priteshgupta032:Wr3JMPxIxU3h6yOV@creative-technology.40p6wzw.mongodb.net/Creative-Technology").then(() =>
-  console.log("connected")
-  );// error handler
+// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
