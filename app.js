@@ -12,7 +12,6 @@ var IOSRouter = require('./routes/Posts/IOS');
 var MACRouter = require('./routes/Posts/MAC');
 var windowRouter = require('./routes/Posts/window');
 var usersRouter = require('./routes/DataBase/users');
-// var usersRouter = require('./routes/DataBase/counter');
 var session = require('express-session')
 var app = express();
 app.use(session({
