@@ -9,10 +9,11 @@ const GamingModel = require("./DataBase/gaming")
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require("path")
+const natural = require('natural');
 const fs = require("fs")
+const { JSDOM } = require('jsdom');
 var router = express.Router();
 var app = express()
-
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(session({
@@ -22,7 +23,7 @@ app.use(session({
 }));
 app.use(express.static('public'));
 app.use(bodyParser.json());
-router.use(bodyParser.text());
+router.use(bodyParser.text({ type: 'text/plain' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -79,26 +80,102 @@ router.get('/creative-technology/:slug', async (req, res, next) => {
 
 // blog page rendering
 
+function stripHtml(html) {
+  // Remove specific unwanted patterns first
+  const unwantedPatterns = /<%- include\(['"].+?['"]\)%>|<!DOCTYPE html>|<html lang="en">|<head>[\s\S]*?<\/head>|<body>|<\/body>|<\/html>|<p\b[^>]*>|<\/p>/g;
+  let cleanedHtml = html.replace(unwantedPatterns, '');
+
+  // Use JSDOM to parse the cleaned HTML
+  const dom = new JSDOM(cleanedHtml);
+  const document = dom.window.document;
+
+  // Remove any remaining script, style, and link elements
+  const elementsToRemove = document.querySelectorAll('script, style, link');
+  elementsToRemove.forEach(element => element.remove());
+
+  let textContent = document.body.textContent || "";
+  textContent = textContent.replace(/\s\s+/g, ' ').trim(); // Replace multiple spaces with a single space and trim
+  textContent = textContent.replace(/&amp;#39;|&#39;/g, " "); // Convert HTML entities back to single quotes
+  return textContent;
+}
+// Function to analyze content and generate metadata
+function generateMetadata(content, slugs) {
+  const textContent = stripHtml(content);
+  const summary = textContent.substring(0, 250);
+  const words = textContent.split(/\s+/);
+  const wordFreq = words.reduce((freq, word) => {
+    const lowerCaseWord = word.toLowerCase();
+    freq[lowerCaseWord] = (freq[lowerCaseWord] || 0) + 1;
+    return freq;
+  }, {});
+
+  // Extract keywords from the title, excluding numbers
+  const slugsWords = slugs.split(/\s+/);
+  let keywords = slugsWords.filter(word => !/\d/.test(word)); // Exclude words containing numbers
+
+  // Limit the number of keywords if needed
+  keywords = keywords.slice(0, 10); // Limit to top 10 keywords
+
+  // If no keywords extracted from the title, fallback to content-based keywords
+  if (keywords.length === 0) {
+    keywords = Object.keys(wordFreq)
+      .sort((a, b) => wordFreq[b] - wordFreq[a])
+      .filter(word => word.length > 3) // Filter out short words
+      .slice(0, 10); // Extract top 10 words as keywords
+  }
+
+  console.log(slugs);
+  const meta_name = slugs.slice(0, -4); // Assuming slugs end with ".html" and you want to remove it
+  const url = `https://www.creative-technology.tech/${meta_name}`;
+  const meta_title = meta_name;
+  const metadata = {
+    title: meta_title, // Use provided title
+    description: summary,
+    keywords: keywords.join(', '),
+    author: 'Creative-Technology Team',
+    url: url,
+  };
+
+  return metadata;
+}
+
+
+
+
 router.get('/:slug', (req, res, next) => {
   try {
-    slug = req.params.slug;
-    if (slug == "page") {
-      next()
-      return
+    const slugs = req.params.slug;
+    const slug = slugs.slice(0, -4); // Assuming slugs end with ".html" and you want to remove it
+    const blogContent = getBlogContentById(slugs);
+    const metadata = generateMetadata(blogContent, slugs); // Assuming you want to pass a placeholder title
+    if (slugs === "page") {
+      next();
+      return;
     }
-    res.render(`blogpost/${req.params.slug}`)
+    res.render(`blogpost/${slugs}`, { slug: slug, content: blogContent, metadata });
   } catch (error) {
-    res.render('error', { error: 'Page Not Found' })
+    res.render('error', { error });
   }
-})
+});
+
+function getBlogContentById(slugs) {
+  // This function should fetch the content from a database or file based on the ID
+  // For this example, we'll read from a static file
+  const filePath = path.join(__dirname, '..', '\\views\\blogpost\\', `${slugs}.ejs`);
+  return fs.readFileSync(filePath, 'utf8');
+}
+
+
 router.get('/trial/:slug', (req, res, next) => {
   try {
-    slug = req.params.slug;
+    const slugs = req.params.slug;
+    const slug = slugs.slice(0, -4);
+
     if (slug == "page") {
       next()
       return
     }
-    res.render(`CreateBlogStore/${req.params.slug}`)
+    res.render(`CreateBlogStore/${req.params.slug}`, { slug: slug })
   } catch (error) {
     res.render('error', { error: 'Page Not Found' })
   }
@@ -112,23 +189,7 @@ router.post('/data', async (req, res) => {
   <html lang="en">
   
   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Creative-Technology</title>
-      <link rel="stylesheet" href="/stylesheets/blog-post.css">
-      <link rel="stylesheet" href="/stylesheets/blog-post-utlity.css">
-      <link rel="stylesheet" href="/stylesheets/style.css">
-      <link rel="stylesheet" href="/stylesheets/main.css">
-      <link rel="stylesheet" href="/stylesheets/utility.css">
-      <link rel="stylesheet" href="/stylesheets/page.css">
-      <link rel="stylesheet" href="/stylesheets/footer.css">
-      <link rel="stylesheet" href="/stylesheets/responsive.css">
-      <link rel="stylesheet" href="/stylesheets/chnages.css">
-      <link rel="stylesheet" href="/stylesheets/blogpost-responsive.css">
-      <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-  
-      <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <%- include('../Template-Engine/blog') %>
   </head>
   
   <body id="HtmlBody">
@@ -137,7 +198,7 @@ router.post('/data', async (req, res) => {
   </html>`
   let filename = `${URL}`
   console.log(filename)
-  let filepath = path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views\\", 'CreateBlogStore', filename)
+  let filepath = path.join(__dirname, '..' + '\\views' + '\\CreateBlogStore', filename)
   fs.writeFile(filepath, data, (error) => {
     if (error) {
       res.render('error', { error })

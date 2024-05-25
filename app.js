@@ -11,7 +11,6 @@ var GamingRouter = require('./routes/Posts/Gaming');
 var IOSRouter = require('./routes/Posts/IOS');
 var MACRouter = require('./routes/Posts/MAC');
 var windowRouter = require('./routes/Posts/window');
-var usersRouter = require('./routes/DataBase/users');
 var session = require('express-session')
 var app = express();
 app.use(session({
@@ -36,7 +35,6 @@ app.use('/', MACRouter);
 app.use('/', IOSRouter);
 app.use('/', GadgetsRouter);
 app.use('/', GamingRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -11,13 +11,17 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views", 'page'));
+app.set('views', path.join(__dirname, '..', '..' + '\\views' + '\\page'));
 app.set('view engine', 'ejs');
 router.use(bodyParser.text());
 
 
 router.post('/upload', upload.single('file'), async (req, res) => {
   const post = await PostModel.find();
+  let posts = post.length;
+  let pages = posts / 24
+  let page = Math.round(pages)
+  console.log(page)
   try {
     const created = PostModel.create({
       postname: req.body.text,
@@ -25,29 +29,16 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       image: req.file.filename,
     });
     req.session.postData = created;
-    // creating page section
-    let page = post / 24
-    const fileName = `${page}.ejs`;
-    const filePath = path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views\\", 'page', fileName);
-    const filecontent =
-      `<!DOCTYPE html>
+    if (posts % 24 == 0) {
+
+      // creating page section
+      const fileName = `${page}.ejs`;
+      const filePath = path.join(__dirname, '..', '..' + '\\views' + '\\page' + fileName);
+      const filecontent =
+        `<!DOCTYPE html>
       <html>
       <head>
-      
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Page: Page(<%= PostPerPage %> out of <%= roundednumber%>) Creative Technology</title>
-        <link rel="stylesheet" href="/stylesheets/style.css">
-        <link rel="stylesheet" href="/stylesheets/main.css">
-        <link rel="stylesheet" href="assets/header-fixed.css">
-        <link rel="stylesheet" href="/stylesheets/utility.css">
-        <link rel="stylesheet" href="/stylesheets/page.css">
-        <link rel="stylesheet" href="/stylesheets/footer.css">
-        <link rel="stylesheet" href="/stylesheets/responsive.css">
-        <link rel="icon" type="image/x-icon" href="/path/to/your/favicon.ico">
-        <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-      
+      <%- include('../Template-Engine/page1') %>
       </head>
       
       <body>
@@ -97,7 +88,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         </section>
       
         </main>
-      
+        <%- include('../Template-Engine/follw') %>
         <div class="pg-footer">
           <%- include('../footer.ejs') %>
         </div>
@@ -107,11 +98,12 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       <script src="/javascripts/Index.js"></script>
 
       </html>`
-    fs.writeFile(filePath, filecontent, (error) => {
-      if (error) {
-        res.render('error', { error })
-      }
-    })
+      fs.writeFile(filePath, filecontent, (error) => {
+        if (error) {
+          res.render('error', { error })
+        }
+      })
+    }
     // blog page
     let filename = req.body.heading
     let blogfilename = `${filename}.ejs`
@@ -121,7 +113,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Documnet</title>
+        <title><%=slug%>: Creative-Technology</title>
         <link rel="stylesheet" href="/stylesheets/blog-post.css">
         <link rel="stylesheet" href="/stylesheets/blog-post-utlity.css">
         <link rel="stylesheet" href="/stylesheets/style.css">
@@ -198,6 +190,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
                           <ul>
                               <li id="select">Select</li>
                               <li id="edit">Edit</li>
+                              <li id="Delete">Delete</li>
                           </ul>
                       </div>
                   </li>
@@ -224,6 +217,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   </div>
   </div>
       </main>
+      <%- include('../Template-Engine/follw') %>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.lordicon.com/lordicon.js"></script>
       <script src="/javascripts/Index.js"></script>
@@ -243,7 +237,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       <script src="/javascripts/center.js"></script>
     </body>
     </html>`
-    let blogfilepath = path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views\\", 'CreateBlogStore', blogfilename);
+    let blogfilepath = path.join(__dirname, '..', '..' + '\\views'+'\\CreateBlogStore', blogfilename);
     fs.writeFile(blogfilepath, filedata, (error) => {
       if (error) {
         res.render('error', { error })

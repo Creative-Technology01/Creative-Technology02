@@ -2,22 +2,7 @@
 <html>
 
 <head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>page - Creative Technology</title>
-
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link rel="stylesheet" href="/stylesheets/main.css">
-  <link rel="stylesheet" href="assets/header-fixed.css">
-  <link rel="stylesheet" href="/stylesheets/utility.css">
-  <link rel="stylesheet" href="/stylesheets/page.css">
-  <link rel="stylesheet" href="/stylesheets/footer.css">
-  <link rel="icon" type="image/x-icon" href="/path/to/your/favicon.ico">
-  <link rel="stylesheet" href="/stylesheets/responsive.css">
-
-  <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+  <%- include('../Template-Engine/page') %>
 
 </head>
 
@@ -64,7 +49,7 @@
     </section>
 
   </main>
-
+  <%- include('../Template-Engine/follw') %>
   <div class="pg-footer">
     <%- include('../footer.ejs') %>
   </div>

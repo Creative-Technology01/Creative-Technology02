@@ -7,42 +7,29 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views", 'Gaming'));
+app.set('views', path.join(__dirname, '..', '..' + '\\views' + '\\Gaming'));
 app.set('view engine', 'ejs');
 
-let page = 1
 router.post('/gaupload', upload.single('gamingfile'), async (req, res) => {
   const post = await GamingModel.find();
+  let posts = post.length;
+  let pages = posts / 24
+  let page = Math.round(pages)
   try {
     const created = GamingModel.create({
       postname: req.body.gamingtext,
       postheading: req.body.gamingheading,
       image: req.file.filename,
     });
-
-    // creating page section
-    page++;
-    const fileName = `${page}.ejs`;
-    const filePath = path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views\\", 'Gaming', fileName);
-    const filecontent =
-    `<!DOCTYPE html>
+    if (posts % 24 == 0) {
+      // creating page section
+      const fileName = `${page}.ejs`;
+      const filePath = path.join(__dirname, '..', '..' + '\\views' + '\\ Gaming' + fileName);
+      const filecontent =
+        `<!DOCTYPE html>
       <html>
       <head>
-      
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Gaming: Page(<%= PostPerPage %> out of <%= roundednumber%>) Creative Technology</title>
-        <link rel="stylesheet" href="/stylesheets/style.css">
-        <link rel="stylesheet" href="/stylesheets/main.css">
-        <link rel="stylesheet" href="assets/header-fixed.css">
-        <link rel="stylesheet" href="/stylesheets/utility.css">
-        <link rel="stylesheet" href="/stylesheets/page.css">
-        <link rel="stylesheet" href="/stylesheets/footer.css">
-        <link rel="stylesheet" href="/stylesheets/responsive.css">
-        <link rel="icon" type="image/x-icon" href="/path/to/your/favicon.ico">
-        <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-      
+      <%- include('../Template-Engine/gami') %>
       </head>
       
       <body>
@@ -92,7 +79,7 @@ router.post('/gaupload', upload.single('gamingfile'), async (req, res) => {
         </section>
       
         </main>
-      
+        <%- include('../Template-Engine/follw') %>
         <div class="pg-footer">
           <%- include('../footer.ejs') %>
         </div>
@@ -102,11 +89,12 @@ router.post('/gaupload', upload.single('gamingfile'), async (req, res) => {
       <script src="/javascripts/Index.js"></script>
 
       </html>`
-    fs.writeFile(filePath, filecontent, (error) => {
-      if (error) {
-        res.render('error', { error })
-      }
-    })
+      fs.writeFile(filePath, filecontent, (error) => {
+        if (error) {
+          res.render('error', { error })
+        }
+      })
+    }
   } catch (error) {
     res.render('error', { error })
   }
@@ -118,7 +106,7 @@ router.get('/categories/Gaming', async function (req, res, next) {
     let posts = await GamingModel.find()
     const finalPosts = posts.slice(-24)
     let post = 24
-    res.render('Gaming/Gaming', { finalPosts , post });
+    res.render('Gaming/Gaming', { finalPosts, post });
   } catch (error) {
     res.render('error', { error });
   }
@@ -131,13 +119,13 @@ router.get('/Gaming/:slug', async function (req, res, next) {
     let posts = await GamingModel.find()
     let post = 24
     let postslength = posts.length
-    let pagereach = postslength/24
+    let pagereach = postslength / 24
     let roundednumber = Math.floor(pagereach)
-    if(PostPerPage>roundednumber){
+    if (PostPerPage > roundednumber) {
       res.redirect(roundednumber)
     }
     const finalPosts = posts.slice(maxpost, minpost)
-    res.render(`Gaming/${req.params.slug}`, { finalPosts, post ,PostPerPage , roundednumber });
+    res.render(`Gaming/${req.params.slug}`, { finalPosts, post, PostPerPage, roundednumber });
   } catch (error) {
     res.render('error', { error });
   }

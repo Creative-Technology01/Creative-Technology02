@@ -159,6 +159,6 @@ let InsertFooter = document.getElementById("InsertFooter").addEventListener('cli
       </div>
     </div>
   </footer>`
-  let HtmlMain = document.getElementById("HtmlMain")
-  HtmlMain.insertAdjacentHTML('afterend' , Footercode)
+  let subscribe_follow = document.getElementById("subscribe_follow")
+  subscribe_follow.insertAdjacentHTML('afterend' , Footercode)
 })

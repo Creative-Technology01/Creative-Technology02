@@ -7,12 +7,14 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views", 'Gadgets'));
+app.set('views', path.join(__dirname , '..','..'+'\\views'+'\\Gadgets'));
 app.set('view engine', 'ejs');
 
-let page = 1
 router.post('/gupload', upload.single('gadgetsfile'), async (req, res) => {
   const post = await GadgetsModel.find();
+  let posts = post.length
+  let pages = posts/24
+  let page = Math.round(pages)
   try {
     const created = GadgetsModel.create({
       postname: req.body.gadgetstext,
@@ -21,29 +23,15 @@ router.post('/gupload', upload.single('gadgetsfile'), async (req, res) => {
     });
 
     // creating page section
-      page++;
-    
-    const fileName = `${page}.ejs`;
-    const filePath = path.join("C:\\Users\\HP\\Desktop\\Creative-Technology\\views\\", 'Gadgets', fileName);
-    const filecontent =
-    `<!DOCTYPE html>
+    if (posts % 24 == 0) {
+      const fileName = `${page}.ejs`;
+      const filePath = path.join(__dirname , '..','..'+'\\views'+'\\Gadgets' +  fileName);
+      const filecontent =
+        `<!DOCTYPE html>
     <html>
     <head>
     
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Gadgets: Page(<%= PostPerPage %> out of <%= roundednumber%>) Creative Technology</title>
-      <link rel="stylesheet" href="/stylesheets/style.css">
-      <link rel="stylesheet" href="/stylesheets/main.css">
-      <link rel="stylesheet" href="assets/header-fixed.css">
-      <link rel="stylesheet" href="/stylesheets/utility.css">
-      <link rel="stylesheet" href="/stylesheets/page.css">
-      <link rel="stylesheet" href="/stylesheets/footer.css">
-      <link rel="stylesheet" href="/stylesheets/responsive.css">
-      <link rel="icon" type="image/x-icon" href="/path/to/your/favicon.ico">
-      <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-    
+    <%- include('../Template-Engine/gad1') %>
     </head>
     
     <body>
@@ -93,7 +81,7 @@ router.post('/gupload', upload.single('gadgetsfile'), async (req, res) => {
       </section>
     
       </main>
-    
+      <%- include('../Template-Engine/follw') %>
       <div class="pg-footer">
         <%- include('../footer.ejs') %>
       </div>
@@ -103,11 +91,12 @@ router.post('/gupload', upload.single('gadgetsfile'), async (req, res) => {
     <script src="/javascripts/Index.js"></script>
 
     </html>`
-    fs.writeFile(filePath, filecontent, (error) => {
-      if (error) {
-        res.render('error', { error })
-      }
-    })
+      fs.writeFile(filePath, filecontent, (error) => {
+        if (error) {
+          res.render('error', { error })
+        }
+      })
+    }
   } catch (error) {
     res.render('error', { error })
   }
@@ -119,28 +108,28 @@ router.get('/categories/Gadgets', async function (req, res, next) {
     let posts = await GadgetsModel.find()
     const finalPosts = posts.slice(-24)
     let post = 24
-    res.render('Gadgets/Gadgets', { finalPosts , post });
+    res.render('Gadgets/Gadgets', { finalPosts, post });
   } catch (error) {
-    res.render('error', {error});
+    res.render('error', { error });
   }
 });
 router.get('/Gadgets/:slug', async function (req, res, next) {
   try {
     let PostPerPage = parseInt(req.params.slug);
     minpost = PostPerPage * -24
-    maxpost = (PostPerPage+1) * -24
+    maxpost = (PostPerPage + 1) * -24
     let posts = await GadgetsModel.find()
-    const finalPosts = posts.slice(maxpost , minpost)
+    const finalPosts = posts.slice(maxpost, minpost)
     let post = 24
     let postslength = posts.length
-    let pagereach = postslength/24
+    let pagereach = postslength / 24
     let roundednumber = Math.floor(pagereach)
-    if(PostPerPage>roundednumber){
+    if (PostPerPage > roundednumber) {
       res.redirect(roundednumber)
     }
-    res.render(`Gadgets/${req.params.slug}`, { finalPosts , PostPerPage ,post , roundednumber});
+    res.render(`Gadgets/${req.params.slug}`, { finalPosts, PostPerPage, post, roundednumber });
   } catch (error) {
-    res.render('error', {error});
+    res.render('error', { error });
   }
 });
 

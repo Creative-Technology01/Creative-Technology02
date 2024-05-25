@@ -7,6 +7,7 @@ let Publish = document.getElementById("Publish").addEventListener('click', () =>
     });
     let header = document.getElementById("header")
     header.parentNode.removeChild(header)
+    document.head.innerHTML = '<%- include(\'../Template-Engine/blog\') %>';
     SaveHTMLCode()
     let url = window.location.pathname;
     let parts = url.split('/');
