@@ -64,6 +64,51 @@ main h2 a{
 }
 
 
+.follow_subscribe_section{
+    background-color: rgba(227, 227, 227, 0.848);
+    width: 60%;
+    margin: 0 auto;
+    padding: 50px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.follow_subscribe{
+    display: flex;
+    justify-content: space-between;
+}
+.follow{
+    width: 40%;
+    background: linear-gradient(135deg,rgb(0, 0, 255) ,  rgb(191, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.follow div {
+    margin: 20px 0;
+
+}
+.follow p {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 19px;
+}
+.follow_logo{
+    display: flex;
+    text-align: center;
+}
+.follow_logo svg{
+    height: 30px;
+}
+.follow_link{
+    margin-left: 10px;
+}
+.subscribe p{
+    background: linear-gradient(135deg,rgb(0, 0, 255) ,  rgb(191, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.email{
+    margin: 30px auto;
+    /* text-align: right; */
+}
 @keyframes fade-out {
     0%{
         opacity: 0;
