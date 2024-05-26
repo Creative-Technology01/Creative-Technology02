@@ -11,13 +11,6 @@ var GamingRouter = require('./routes/Posts/Gaming');
 var IOSRouter = require('./routes/Posts/IOS');
 var MACRouter = require('./routes/Posts/MAC');
 var windowRouter = require('./routes/Posts/window');
-<<<<<<< HEAD
-=======
-var PORT = 3000;
-var usersRouter = require('./routes/DataBase/users');
-const mongoose = require('mongoose');
-// var usersRouter = require('./routes/DataBase/counter');
->>>>>>> fa4528f899eb546cbe5094ad591751b957fc8b8b
 var session = require('express-session')
 var app = express();
 app.use(session({
@@ -42,43 +35,6 @@ app.use('/', MACRouter);
 app.use('/', IOSRouter);
 app.use('/', GadgetsRouter);
 app.use('/', GamingRouter);
-
-console.log(typeof(usersRouter))
-usersRouter()
-.then(client => {
-        console.log('Connected to MongoDB');
-        const postSchema = new mongoose.Schema({
-                      postname: {
-                                      type: String,
-                                      required: true
-                                    },
-                      postheading: {
-                                      type: String,
-                                      required: true
-                                    },
-                      image: {
-                                      type: String,
-                                      required: true
-                                    },
-                      date: {
-                                      type: Date,
-                                      default: Date.now
-                                    },
-                      lastUpdated: {
-                                      type: Date,
-                                      default: Date.now
-                                    }
-                    });
-         const Post = mongoose.model('Post', postSchema);
-            module.exports = Post;
-        client.close();
-            console.log('Disconnected from MongoDB');
-          })
-  .catch(error => {
-              console.error('Failed to connect to MongoDB:', error);
-           process.exit(1);
-  });
-
 app.use(function(req, res, next) {
   next(createError(404));
 });
@@ -91,5 +47,4 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-console.log('Website Running At Port', PORT)
 module.exports = app;
