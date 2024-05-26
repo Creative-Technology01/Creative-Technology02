@@ -148,7 +148,7 @@ router.get('/:slug', (req, res, next) => {
     const slug = slugs.slice(0, -4); // Assuming slugs end with ".html" and you want to remove it
     const blogContent = getBlogContentById(slugs);
     const metadata = generateMetadata(blogContent, slugs); // Assuming you want to pass a placeholder title
-    if (slugs === "page") {
+    if (slug === "page") {
       next();
       return;
     }

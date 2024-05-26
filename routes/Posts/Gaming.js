@@ -58,7 +58,7 @@ router.post('/gaupload', upload.single('gamingfile'), async (req, res) => {
                           <%= element.postname %>
                         </p>
                         <div class="flex justify-center">
-                          <a href="/<%= element.postheading %>" class="link">Go somewhere</a>
+                          <a href="/<%= element.postheading %>" class="link">Read More</a>
                         </div>
                       </div>
                     </div>

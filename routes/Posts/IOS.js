@@ -61,7 +61,7 @@ router.post('/iupload', upload.single('iosfile'), async (req, res) => {
                         <%= element.postname %>
                       </p>
                       <div class="flex justify-center">
-                        <a href="/<%= element.postheading %>" class="link">Go somewhere</a>
+                        <a href="/<%= element.postheading %>" class="link">Read More</a>
                       </div>
                     </div>
                   </div>
