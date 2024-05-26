@@ -148,10 +148,6 @@ router.get('/:slug', (req, res, next) => {
     const slug = slugs.slice(0, -4); // Assuming slugs end with ".html" and you want to remove it
     const blogContent = getBlogContentById(slugs);
     const metadata = generateMetadata(blogContent, slugs); // Assuming you want to pass a placeholder title
-    if (slug === "page") {
-      next();
-      return;
-    }
     res.render(`blogpost/${slugs}`, { slug: slug, content: blogContent, metadata });
   } catch (error) {
     res.render('error', { error });
@@ -189,7 +185,21 @@ router.post('/data', async (req, res) => {
   <html lang="en">
   
   <head>
-  <%- include('../Template-Engine/blog') %>
+  <title>Creative-technology</title>
+  <link rel="stylesheet" href="/stylesheets/blog-post.css">
+<link rel="stylesheet" href="/stylesheets/blog-post-utlity.css">
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="stylesheet" href="/stylesheets/utility.css">
+<link rel="stylesheet" href="/stylesheets/page.css">
+<link rel="stylesheet" href="/stylesheets/footer.css">
+<link rel="stylesheet" href="/stylesheets/responsive.css">
+<link rel="stylesheet" href="/stylesheets/chnages.css">
+<link rel="stylesheet" href="/stylesheets/blogpost-responsive.css">
+<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   </head>
   
   <body id="HtmlBody">
