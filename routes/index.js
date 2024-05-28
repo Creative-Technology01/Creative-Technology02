@@ -185,23 +185,7 @@ router.post('/data', async (req, res) => {
   <html lang="en">
   
   <head>
-  <title>Creative-technology</title>
-  <link rel="stylesheet" href="/stylesheets/blog-post.css">
-<link rel="stylesheet" href="/stylesheets/blog-post-utlity.css">
-<link rel="stylesheet" href="/stylesheets/style.css">
-<link rel="stylesheet" href="/stylesheets/main.css">
-<link rel="stylesheet" href="/stylesheets/utility.css">
-<link rel="stylesheet" href="/stylesheets/page.css">
-<link rel="stylesheet" href="/stylesheets/footer.css">
-<link rel="stylesheet" href="/stylesheets/responsive.css">
-<link rel="stylesheet" href="/stylesheets/chnages.css">
-<link rel="stylesheet" href="/stylesheets/blogpost-responsive.css">
-<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  </head>
-  
+  <%- include('../Template-Engine/blog') %>
   <body id="HtmlBody">
     ${receivedData}
   </body>
