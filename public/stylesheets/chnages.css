@@ -12,6 +12,35 @@
     margin: 0;
     text-align: left;
 }
+
+.blog-page-anchor {
+
+    padding: 10px 0px;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255));
+    margin-right: 20px;
+    border-radius: 50px;
+    max-width: fit-content
+      /* transition: all 9s ease; Adjust timing as needed */
+  }
+  
+  .blog-page-anchor-link {
+    padding: 10px 20px;
+    color: white; 
+  }
+  
+  .blog-page-anchor:hover {
+    background-color: white;
+    background: linear-gradient(135deg, rgb(81, 76, 76), rgb(175, 26, 175), rgb(0, 145, 255)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    animation: fade-out 2s both;
+  }
+  
+  .div-container-two{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 *{
     user-select: none;
 }

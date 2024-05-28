@@ -148,6 +148,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
                                           <li id="Paragraph" style="color: inherit;">Paragraph</li>
                                           <li id="Heading">Heading</li>
                                           <li id="List">List</li>
+                                          <li id="addLinkButton">Link</li>
                                       </ul>
                                   </div>
                               </li>
@@ -234,6 +235,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       <script src="/javascripts/blog10.js"></script>
       <script src="/javascripts/ralis.js"></script>
       <script src="/javascripts/blog12.js"></script>
+      <script src="/javascripts/blog13.js"></script>
       <script src="/javascripts/center.js"></script>
     </body>
     </html>`
