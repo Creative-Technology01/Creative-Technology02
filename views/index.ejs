@@ -141,6 +141,35 @@
                 </div>
             </section>
             <%- include('Template-Engine/follw') %>
+            <h2 class="text-center m-tb heading-color">AI</h2>
+            <section class="m-b p-tb">
+                <div class="pair-set flex flex-wrap space-evenly">
+                    <% AIpost.reverse().forEach(element=> { %>
+                        <div class="flex space-evenly space">
+                            <div class="3pair-set">
+                                <div class="card">
+                                    <img src="/images/upload/<%= element.image %>"
+                                        class="card-img-top p-tb flex justify-center" alt="...">
+
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h2>
+                                                <%=element.postheading%>
+                                            </h2>
+                                        </div>
+                                        <p class="card-text p-tb  link-bottom">
+                                            <%= element.postname %>
+                                        </p>
+                                        <div class="flex justify-center">
+                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </section>
             <h2 class="text-center m-tb heading-color">Android</h2>
             <section class="m-b p-tb">
                 <div class="pair-set flex flex-wrap space-evenly">

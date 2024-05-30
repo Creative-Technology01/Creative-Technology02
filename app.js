@@ -11,6 +11,7 @@ var GamingRouter = require('./routes/Posts/Gaming');
 var IOSRouter = require('./routes/Posts/IOS');
 var MACRouter = require('./routes/Posts/MAC');
 var windowRouter = require('./routes/Posts/window');
+var AIRouter = require('./routes/Posts/AI');
 var session = require('express-session')
 var app = express();
 app.use(session({
@@ -35,6 +36,7 @@ app.use('/', MACRouter);
 app.use('/', IOSRouter);
 app.use('/', GadgetsRouter);
 app.use('/', GamingRouter);
+app.use('/', AIRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

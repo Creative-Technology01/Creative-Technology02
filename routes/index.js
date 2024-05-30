@@ -1,6 +1,7 @@
 var express = require('express');
 const PostModel = require("./DataBase/users")
 const AndroidModel = require("./DataBase/android")
+const AIModel = require("./DataBase/AI")
 const WindowModel = require("./DataBase/window")
 const iosModel = require("./DataBase/ios")
 const macModel = require("./DataBase/mac")
@@ -60,8 +61,11 @@ router.get('/', async function (req, res, next) {
   const Gamingposts = await GamingModel.find()
   const Gamingpost = Gamingposts.slice(-3)
 
+  const AIposts = await AIModel.find()
+  const AIpost = AIposts.slice(-3)
+
   const posts = await PostModel.find().sort({ lastUpdated: -1 });
-  res.render('index', { recommmendedpost, latestposts, androidpost, windowpost, iospost, macpost, Gadgetspost, Gamingpost, posts });
+  res.render('index', { recommmendedpost, latestposts, androidpost, windowpost, iospost, macpost, Gadgetspost, Gamingpost, posts ,AIpost });
 })
 
 
