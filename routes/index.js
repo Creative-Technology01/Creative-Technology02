@@ -161,7 +161,7 @@ router.get('/:slug', (req, res, next) => {
 function getBlogContentById(slugs) {
   // This function should fetch the content from a database or file based on the ID
   // For this example, we'll read from a static file
-  const filePath = path.join(__dirname, '..', '\\views\\blogpost\\', `${slugs}.ejs`);
+  const filePath = path.join(__dirname, '..', 'viewsblogpost', `${slugs}.ejs`);
   return fs.readFileSync(filePath, 'utf8');
 }
 
@@ -196,7 +196,7 @@ router.post('/data', async (req, res) => {
   </html>`
   let filename = `${URL}`
   console.log(filename)
-  let filepath = path.join(__dirname, '..' + '\\views' + '\\CreateBlogStore', filename)
+  let filepath = path.join(__dirname, '..' , 'views' , 'CreateBlogStore', filename)
   fs.writeFile(filepath, data, (error) => {
     if (error) {
       res.render('error', { error })

@@ -7,7 +7,7 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join(__dirname, '..', '..' + '\\views' + '\\MAC'));
+app.set('views', path.join(__dirname, '..', '..' , 'views' , 'MAC'));
 app.set('view engine', 'ejs');
 
 router.post('/mupload', upload.single('macfile'), async (req, res) => {
@@ -25,7 +25,7 @@ router.post('/mupload', upload.single('macfile'), async (req, res) => {
     // creating page section
     if (posts % 24 == 0) {
       const fileName = `${page}.ejs`;
-      const filePath = path.join(__dirname, '..', '..' + '\\views' + '\\MAC' + fileName);
+      const filePath = path.join(__dirname, '..', '..' , 'views' , 'MAC' , fileName);
       const filecontent =
         `<!DOCTYPE html>
     <html>

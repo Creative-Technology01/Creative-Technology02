@@ -11,7 +11,7 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join(__dirname, '..', '..' + '\\views' + '\\page'));
+app.set('views', path.join(__dirname, '..', '..' , 'views' , 'page'));
 app.set('view engine', 'ejs');
 router.use(bodyParser.text());
 
@@ -33,7 +33,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
       // creating page section
       const fileName = `${page}.ejs`;
-      const filePath = path.join(__dirname, '..', '..' + '\\views' + '\\page' + fileName);
+      const filePath = path.join(__dirname, '..', '..' , 'views' , 'page' , fileName);
       const filecontent =
         `<!DOCTYPE html>
       <html>
@@ -239,7 +239,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       <script src="/javascripts/center.js"></script>
     </body>
     </html>`
-    let blogfilepath = path.join(__dirname, '..', '..' + '\\views'+'\\CreateBlogStore', blogfilename);
+    let blogfilepath = path.join(__dirname, '..', '..' , 'views','CreateBlogStore', blogfilename);
     fs.writeFile(blogfilepath, filedata, (error) => {
       if (error) {
         res.render('error', { error })
@@ -256,8 +256,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
 router.post('/host', async (req, res) => {
   let filename = `${req.query.slug}`
-  let initalpath = path.resolve(__dirname, '..', '..' + '\\views\\CreateBlogStore\\' + filename);
-  let finalpath = path.resolve(__dirname, '..', '..' + '\\views\\blogpost\\' + filename);
+  let initalpath = path.resolve(__dirname, '..', '..' , 'viewsCreateBlogStore' , filename);
+  let finalpath = path.resolve(__dirname, '..', '..' , 'viewsblogpost' , filename);
   if (fs.existsSync(initalpath)) {
     // Move the file to the destination folder
     fs.rename(initalpath, finalpath, (err) => {

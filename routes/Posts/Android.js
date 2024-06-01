@@ -7,7 +7,7 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join(__dirname , '..','..'+'\\views'+'\\Android'));
+app.set('views', path.join(__dirname , '..','..','views','Android'));
 app.set('view engine', 'ejs');
 
 router.post('/aupload', upload.single('Androidfile'), async (req, res) => {
@@ -24,7 +24,7 @@ router.post('/aupload', upload.single('Androidfile'), async (req, res) => {
     if (posts % 24 == 0) {
       // creating page section
       const fileName = `${page}.ejs`;
-      const filePath = path.join(__dirname , '..','..'+'\\views'+'\\Android'+ fileName);
+      const filePath = path.join(__dirname , '..','..','views','Android', fileName);
       const filecontent =
         `<!DOCTYPE html>
      <html>

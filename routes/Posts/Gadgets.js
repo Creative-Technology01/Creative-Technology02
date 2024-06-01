@@ -7,7 +7,7 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join(__dirname , '..','..'+'\\views'+'\\Gadgets'));
+app.set('views', path.join(__dirname , '..','..','views','Gadgets'));
 app.set('view engine', 'ejs');
 
 router.post('/gupload', upload.single('gadgetsfile'), async (req, res) => {
@@ -25,7 +25,7 @@ router.post('/gupload', upload.single('gadgetsfile'), async (req, res) => {
     // creating page section
     if (posts % 24 == 0) {
       const fileName = `${page}.ejs`;
-      const filePath = path.join(__dirname , '..','..'+'\\views'+'\\Gadgets' +  fileName);
+      const filePath = path.join(__dirname , '..','..','views','Gadgets',fileName);
       const filecontent =
         `<!DOCTYPE html>
     <html>
@@ -60,7 +60,7 @@ router.post('/gupload', upload.single('gadgetsfile'), async (req, res) => {
                         <%= element.postname %>
                       </p>
                       <div class="flex justify-center">
-                        <a href="/<%= element.postheading %>" class="link">Read More</a>
+                        <a href="/<%= element.postheading %>" class="link">Read Mor,</a>
                       </div>
                     </div>
                   </div>

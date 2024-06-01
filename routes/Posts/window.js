@@ -7,7 +7,7 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join(__dirname, '..', '..' + '\\views' + '\\Window'));
+app.set('views', path.join(__dirname, '..', '..' , 'views' , 'Window'));
 app.set('view engine', 'ejs');
 
 
@@ -26,7 +26,7 @@ router.post('/wupload', upload.single('Windowfile'), async (req, res) => {
     // creating page section
     if (posts % 24 == 0) {
       const fileName = `${page}.ejs`;
-      const filePath = path.join(__dirname, '..', '..' + '\\views' + '\\Window' + fileName);
+      const filePath = path.join(__dirname, '..', '..' , 'views' , 'Window' , fileName);
       const filecontent =
         `<!DOCTYPE html>
       <html>
