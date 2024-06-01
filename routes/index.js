@@ -161,7 +161,7 @@ router.get('/:slug', (req, res, next) => {
 function getBlogContentById(slugs) {
   // This function should fetch the content from a database or file based on the ID
   // For this example, we'll read from a static file
-  const filePath = path.join(__dirname, '..', 'viewsblogpost', `${slugs}.ejs`);
+  const filePath = path.join(__dirname, '..', 'views','blogpost', `${slugs}.ejs`);
   return fs.readFileSync(filePath, 'utf8');
 }
 

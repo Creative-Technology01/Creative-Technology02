@@ -256,8 +256,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
 router.post('/host', async (req, res) => {
   let filename = `${req.query.slug}`
-  let initalpath = path.resolve(__dirname, '..', '..' , 'viewsCreateBlogStore' , filename);
-  let finalpath = path.resolve(__dirname, '..', '..' , 'viewsblogpost' , filename);
+  let initalpath = path.resolve(__dirname, '..', '..' , 'views','CreateBlogStore' , filename);
+  let finalpath = path.resolve(__dirname, '..', '..' , 'views','blogpost' , filename);
   if (fs.existsSync(initalpath)) {
     // Move the file to the destination folder
     fs.rename(initalpath, finalpath, (err) => {
