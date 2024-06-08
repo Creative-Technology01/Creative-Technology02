@@ -1,28 +1,31 @@
-document.getElementById('save').addEventListener('click', function () {
-  SaveHTMLCode()
-});
-function SaveHTMLCode() {
-  let containerdata = document.getElementById("HtmlBody")
-  let dataincontainer = containerdata.innerHTML
-  console.log(dataincontainer)
 
+let Publish = document.getElementById("Publish").addEventListener('click', () => {
+  host()
+})
+
+const host = ()=>{
+  let editableElements = document.querySelectorAll("[contenteditable]");
+  // Loop through each element and remove contenteditable attribute
+  editableElements.forEach(function(element) {
+    element.removeAttribute("contenteditable");
+  });
+  let header = document.getElementById("header")
+  header.parentNode.removeChild(header)
+  document.head.innerHTML = '<%- include(\'../Template-Engine/blog\') %>';
+  SaveHTMLCode()
   let url = window.location.pathname;
   let parts = url.split('/');
   let slug = parts[parts.length - 1];
 
   // Send data to server
-  fetch(`/data?slug=${slug}`, { // Include the slug as a query parameter
-    method: 'POST',
-    headers: {
-      'Content-Type': 'text/plain' // Send as plain text
-    },
-    body: dataincontainer // Send the innerHTML of the container
+  fetch(`/host?slug=${slug}`, { // Include the slug as a query parameter
+      method: 'POST',
+  }).then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
   })
-    .then(response => response.text())
-    .then(message => {
-      console.log('Server response:', message);
-    })
-    .catch(error => {
-      console.error('Error sending data:', error);
-    });
+      .catch(error => {
+          console.error('Error saving HTML content:', error);
+      });
 }
