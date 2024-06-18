@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/Creative-Technology")
+mongoose.connect("mongodb://localhost:27017/Creative-Technology")
 // Define the schema for the Post model
 const postSchema = new mongoose.Schema({
   postname: {

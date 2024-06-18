@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <title>Creative-Technology: Diving into the World of Innovation and Entertainment</title>
     <meta name="description"
-        content="Stay updated with the latest trends and news in Android, Windows, iOS, Mac, Gadgets, and Gaming. Creative-Technology brings you expert insights and reviews.">
+        content="Stay updated with the latest trends and news in Android, Windows, apple, technews, Gadgets, and Gaming. Creative-Technology brings you expert insights and reviews.">
     <meta name="keywords"
-        content="Technology, Android, Windows, iOS, Mac, Gadgets, Gaming, Tech News, Reviews, Creative-Technology">
+        content="Technology, Android, Windows, apple, technews, Gadgets, Gaming, Tech News, Reviews, Creative-Technology">
     <meta name="author" content="Creative-Technology Team">
 
     <!-- Viewport Meta Tag for Responsive Design -->
@@ -17,7 +17,7 @@
     <!-- Open Graph Meta Tags for Social Media Integration -->
     <meta property="og:title" content="Creative-Technology: Diving into the World of Innovation and Entertainment">
     <meta property="og:description"
-        content="Stay updated with the latest trends and news in Android, Windows, iOS, Mac, Gadgets, and Gaming. Creative-Technology brings you expert insights and reviews.">
+        content="Stay updated with the latest trends and news in Android, Windows, apple, technews, Gadgets, and Gaming. Creative-Technology brings you expert insights and reviews.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.creative-technology.tech">
 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Creative-Technology: Diving into the World of Innovation and Entertainment">
     <meta name="twitter:description"
-        content="Stay updated with the latest trends and news in Android, Windows, iOS, Mac, Gadgets, and Gaming. Creative-Technology brings you expert insights and reviews.">
+        content="Stay updated with the latest trends and news in Android, Windows, apple, technews, Gadgets, and Gaming. Creative-Technology brings you expert insights and reviews.">
 
     <!-- Favicon and Touch Icons -->
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="/stylesheets/page.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
     <link rel="stylesheet" href="/stylesheets/responsive.css">
+    <link rel="stylesheet" href="/stylesheets/styling.css">
+    <link rel="stylesheet" href="/stylesheets/styling-responsive.css">
     <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
     <!-- Google Analytics -->
@@ -73,286 +75,203 @@
     <%- include('./header.ejs') %>
 
         <main>
-
-            <h2 class="text-center m-tb heading-color">Latest Article</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% latestposts.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
-
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
+            <div class="background-blur"></div>
+            <div class="background-blur2"></div>
+            <div class="background-blur3"></div>
+            <div class="background-blur4"></div>
+            <div class="main_file_container">
+                <div class="tech_news">
+                    <div class="tech_news_heading">
+                        <h2 class="color_heading"><a href="/categories/technews">Tech News</a></h2>
+                    </div>
+                    <div class="main_file_tech_news">
+                        <div class="slider">
+                            <div class="slider-container">
+                                <% technewspost.reverse().forEach(element=> { %>
+                                    <a href="/<%= element.postheading %>">
+                                        <div class="slide fade">
+                                            <img class="slide-image" src="/images/upload/<%= element.image %>">
                                         </div>
-                                        <p class="card-text p-tb  link-bottom">
-                                            <%= element.postname %>
-                                        </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
+                                    </a>
+
+                                    <% }); %>
+
+                                        <!-- Next and previous buttons -->
+                                        <div class="slider-nav">
+                                            <a class="slider-nav-btn" onclick="plusSlides(-1)"></a>
+                                            <a class="slider-nav-btn" onclick="plusSlides(1)"></a>
                                         </div>
-                                    </div>
+
+                                        <!-- The dots/circles -->
+                                        <div class="dot-container">
+                                            <span class="dot" onclick="currentSlide(1)"></span>
+                                            <span class="dot" onclick="currentSlide(2)"></span>
+                                            <span class="dot" onclick="currentSlide(3)"></span>
+                                            <span class="dot" onclick="currentSlide(4)"></span>
+                                            <span class="dot" onclick="currentSlide(5)"></span>
+                                            <span class="dot" onclick="currentSlide(6)"></span>
+                                        </div>
+                            </div>
+                        </div>
+                        <div class="main_file_tech_news_latest_news">
+                            <div class="ag-format-container">
+                                <div class="ag-courses_box">
+                                    <% tech_news_post_4card.reverse().forEach(element=>{ %>
+                                        <div class="ag-courses_item">
+                                            <a href="/<%= element.postheading  %>" class="ag-courses-item_link">
+                                                <div class="ag-courses-item_bg"></div>
+
+                                                <div class="ag-courses-item_title">
+                                                    <%= element.postheading %>
+                                                </div>
+
+                                                <div class="ag-courses-item_date-box">
+                                                    <%= element.postname %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <% }) %>
+
                                 </div>
                             </div>
                         </div>
-                        <% }); %>
-                            <div class="footer-content-column">
-                                <div class="justify-center flex all_article_link">
-                                    <a class="footer-call-to-action-button button" href="/page/page" target="_self"
-                                        style="margin: 0;">All
-                                        Articles</a>
-                                </div>
-                            </div>
-                </div>
-
-            </section>
-            <h2 class="text-center m-tb heading-color">Recommended Article</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% recommmendedpost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
-
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
+                    </div>
+                    <section class="articles">
+                        <% tech_news_post_3card.reverse().forEach(element=>{ %>
+                            <article class="article_tech_news_card">
+                                <div class="article-wrapper">
+                                    <figure>
+                                        <img src="/images/upload/<%= element.image %>" alt="" />
+                                    </figure>
+                                    <div class="article-body">
+                                        <h2><%= element.postheading%></h2>
+                                        <p>
                                             <%= element.postname %>
                                         </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
+                                        <a href="/<%= element.postheading%>" class="read-more">
+                                            Read more <span class="sr-only">about this is some title</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
+                                                fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <% }); %>
-                </div>
-            </section>
-            <%- include('Template-Engine/follw') %>
-            <h2 class="text-center m-tb heading-color">AI</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% AIpost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
+                            </article>
+                        <% }) %>
 
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
+                    </section>
+                </div>
+                <div class="apple_ai_window_news">
+                    <div class="apple_news apple_ai_window_news_padding">
+                        <div class="apple_ai_window_news_heading_div">
+                            <h2 class="apple_ai_window_news_heading"><a href="/categories/apple">Apple News</a></h2>
+                        </div>
+                        <div class="apple_ai_window_news_posts">
+                            <% Applepost.reverse().forEach(element=>{ %>
+                                <p class="apple_ai_window_news_link"><a href="/<%= element.postheading %>"><%= element.postheading %></a></p>
+                            <% }) %>
+                        </div>
+                    </div>
+                    <div class="ai_news apple_ai_window_news_padding">
+                        <div class="apple_ai_window_news_heading_div">
+                            <h2 class="apple_ai_window_news_heading"><a href="/categories/AI">AI</h2></a>
+                        </div>
+                        <div class="apple_ai_window_news_posts">
+                            <% aipost.reverse().forEach(element=>{ %>
+                                <p class="apple_ai_window_news_link"><a href="/<%= element.postheading %>"><%= element.postheading %></a></p>
+                            <% }) %>
+                        </div>
+                    </div>
+                    <div class="window_news apple_ai_window_news_padding">
+                        <div class="apple_ai_window_news_heading_div">
+                            <h2 class="apple_ai_window_news_heading"><a href="/categories/Windows">Windows</a></h2>
+                        </div>
+                        <div class="apple_ai_window_news_posts">
+                            <% windowpost.reverse().forEach(element=>{ %>
+                                <p class="apple_ai_window_news_link"><a href="/<%= element.postheading %>"><%= element.postheading %></a></p>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+                <%- include('./Template-Engine/follw.ejs') %>
+                <div class="Latest_Articles">
+                    <div class="Latest_Articles_heading">
+                        <h2 class="color_heading"><a href="/page/page">Latest Articles</a></h2>
+                    </div>
+                    <section class="articles">
+                        <% post.reverse().forEach(element=>{ %>
+                            <article class="article_tech_news_card">
+                                <div class="article-wrapper">
+                                    <figure>
+                                        <img src="/images/upload/<%= element.image %>" alt="" />
+                                    </figure>
+                                    <div class="article-body">
+                                        <h2><%= element.postheading%></h2>
+                                        <p>
                                             <%= element.postname %>
                                         </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
+                                        <a href="/<%= element.postheading%>" class="read-more">
+                                            Read more <span class="sr-only">about this is some title</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
+                                                fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <% }); %>
-                </div>
-            </section>
-            <h2 class="text-center m-tb heading-color">Android</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% androidpost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
+                            </article>
+                        <% }) %>
 
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
+                    </section>
+                </div>
+                <div class="More_Articles">
+                    <div class="More_Articles_heading">
+                        <h2 class="color_heading"><a href="/page/page">More on Creative-Technology</a></h2>
+                    </div>
+                    <section class="articles">
+                        <% postformore.reverse().forEach(element=>{ %>
+                            <article class="article_tech_news_card">
+                                <div class="article-wrapper">
+                                    <figure>
+                                        <img src="/images/upload/<%= element.image %>" alt="" />
+                                    </figure>
+                                    <div class="article-body">
+                                        <h2><%= element.postheading%></h2>
+                                        <p>
                                             <%= element.postname %>
                                         </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
+                                        <a href="/<%= element.postheading%>" class="read-more">
+                                            Read more <span class="sr-only">about this is some title</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20"
+                                                fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <% }); %>
+                            </article>
+                        <% }) %>
+
+                    </section>
+                    <div class="w-full h-40 flex items-center justify-center">
+                        <a href="/page/page" class="relative inline-block text-lg group">
+                          <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+                            <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+                            <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
+                            <span class="relative">More Articles</span>
+                          </span>
+                          <span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+                        </a>
+                      </div>
                 </div>
-            </section>
-            <h2 class="text-center m-tb heading-color">Window</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% windowpost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
-
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
-                                            <%= element.postname %>
-                                        </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <% }); %>
-                </div>
-            </section>
-            <h2 class="text-center m-tb heading-color">IOS</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% iospost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
-
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
-                                            <%= element.postname %>
-                                        </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <% }); %>
-
-
-                </div>
-            </section>
-            <h2 class="text-center m-tb heading-color">MAC</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% macpost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
-
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
-                                            <%= element.postname %>
-                                        </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <% }); %>
-
-
-                </div>
-            </section>
-            <h2 class="text-center m-tb heading-color">Gadgets</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% Gadgetspost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
-
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
-                                            <%= element.postname %>
-                                        </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <% }); %>
-
-
-                </div>
-            </section>
-            <h2 class="text-center m-tb heading-color">Gaming</h2>
-            <section class="m-b p-tb">
-                <div class="pair-set flex flex-wrap space-evenly">
-                    <% Gamingpost.reverse().forEach(element=> { %>
-                        <div class="flex space-evenly space">
-                            <div class="3pair-set">
-                                <div class="card">
-                                    <img src="/images/upload/<%= element.image %>"
-                                        class="card-img-top p-tb flex justify-center" alt="...">
-
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h2>
-                                                <%=element.postheading%>
-                                            </h2>
-                                        </div>
-                                        <p class="card-text p-tb  link-bottom">
-                                            <%= element.postname %>
-                                        </p>
-                                        <div class="flex justify-center">
-                                            <a href="/<%= element.postheading %>" class="link">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <% }); %>
-
-
-                </div>
-            </section>
-
+            </div>
         </main>
 
         <div class="pg-footer">
@@ -361,6 +280,55 @@
 
 
 </body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+    let slideIndex = 1;
+    const slides = document.getElementsByClassName("slide");
+    const dots = document.getElementsByClassName("dot");
+
+    // Function to show a specific slide
+    function showSlides(n) {
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        // Remove the "active" class from all dots
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        // Display the current slide and mark its corresponding dot as active
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+
+    // Function to advance to the next slide
+    function plusSlides(n) {
+        showSlides((slideIndex += n));
+    }
+
+    // Function to navigate to a specific slide
+    function currentSlide(n) {
+        showSlides((slideIndex = n));
+    }
+
+    // Automatically advance to the next slide every 3 seconds (3000 milliseconds)
+    setInterval(function () {
+        plusSlides(1);
+    }, 2500);
+
+    // Initialize the slider
+    showSlides(slideIndex);
+</script>
 <script src="/javascripts/Index.js"></script>
 
 </html>

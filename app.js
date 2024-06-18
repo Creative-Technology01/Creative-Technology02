@@ -8,10 +8,12 @@ var PostRouter = require('./routes/Posts/Post');
 var AndroidRouter = require('./routes/Posts/Android');
 var GadgetsRouter = require('./routes/Posts/Gadgets');
 var GamingRouter = require('./routes/Posts/Gaming');
-var IOSRouter = require('./routes/Posts/IOS');
-var MACRouter = require('./routes/Posts/MAC');
+var appleRouter = require('./routes/Posts/apple');
+var technewsRouter = require('./routes/Posts/technews');
 var windowRouter = require('./routes/Posts/window');
 var AIRouter = require('./routes/Posts/AI');
+var save = require('./routes/Posts/save');
+var filemove = require('./routes/Posts/filemove');
 var session = require('express-session')
 var app = express();
 app.use(session({
@@ -32,11 +34,13 @@ app.use('/', indexRouter);
 app.use('/', PostRouter);
 app.use('/', AndroidRouter);
 app.use('/', windowRouter);
-app.use('/', MACRouter);
-app.use('/', IOSRouter);
+app.use('/', technewsRouter);
+app.use('/', appleRouter);
 app.use('/', GadgetsRouter);
 app.use('/', GamingRouter);
 app.use('/', AIRouter);
+app.use(save)
+app.use(filemove)
 
 app.use(function(req, res, next) {
   next(createError(404));

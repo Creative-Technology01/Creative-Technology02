@@ -43,7 +43,7 @@ main{
     height: 62px;
     word-wrap: break-word;
 }
-main h2 a{
+.color_heading{
     background: linear-gradient(135deg,rgb(0, 0, 255) ,  rgb(191, 0, 255));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

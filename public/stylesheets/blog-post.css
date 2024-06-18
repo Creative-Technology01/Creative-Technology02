@@ -81,6 +81,13 @@ header button{
     background-color: #033a39;
     cursor: default;
 }
+.input label{
+    margin: 10px 0;
+}
+.input form{
+    display: flex;
+    flex-direction: column;
+}
 .items:hover .items-sub-menu{
     display: flex;
 }

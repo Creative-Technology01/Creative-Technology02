@@ -31,5 +31,8 @@
     "nodemailer": "^6.9.13",
     "session": "^0.1.0",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
   }
 }

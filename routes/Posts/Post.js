@@ -11,7 +11,7 @@ var router = express.Router();
 var app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join(__dirname, '..', '..' , 'views' , 'page'));
+app.set('views', path.join(__dirname, '..', '..', 'views', 'page'));
 app.set('view engine', 'ejs');
 router.use(bodyParser.text());
 
@@ -21,7 +21,6 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   let posts = post.length;
   let pages = posts / 24
   let page = Math.round(pages)
-  console.log(page)
   try {
     const created = PostModel.create({
       postname: req.body.text,
@@ -29,11 +28,11 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       image: req.file.filename,
     });
     req.session.postData = created;
-    if (posts % 24 == 0) {
+    if (posts % 24 === 0 && page >= 2) {
 
       // creating page section
       const fileName = `${page}.ejs`;
-      const filePath = path.join(__dirname, '..', '..' , 'views' , 'page' , fileName);
+      const filePath = path.join(__dirname, '..', '..', 'views', 'page', fileName);
       const filecontent =
         `<!DOCTYPE html>
       <html>
@@ -48,44 +47,41 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         <main>
       <span class="present-page">page<%= PostPerPage %></span>
           <h2 class="text-center m-tb heading-color">Latest Articles</h2>
-          <section class="m-b p-tb">
-          <div class="pair-set flex flex-wrap space-evenly">
-              <% finalPosts.reverse().forEach(element=> { %>
-                <div class="flex space-evenly space">
-                  <div class="3pair-set">
-                    <div class="card">
-                      <img src="/images/upload/<%= element.image %>" class="card-img-top p-tb flex justify-center"
-                        alt="...">
-    
-                      <div class="card-body">
-                        <div class="card-title">
-                          <h2>
-                            <%=element.postheading%>
-                              </h2>
-                        </div>
-                        <p class="card-text p-tb  link-bottom">
-                          <%= element.postname %>
-                        </p>
-                        <div class="flex justify-center">
-                          <a href="/<%= element.postheading %>" class="link">Read More</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <% }); %>
+              <section class="m-b p-tb articles">
+      <% finalPosts.reverse().forEach(element=> { %>
+        <article class="article_tech_news_card">
+          <div class="article-wrapper">
+            <figure>
+              <img src="/images/upload/<%= element.image %>" alt="" />
+            </figure>
+            <div class="article-body">
+              <h2>
+                <%= element.postheading%>
+              </h2>
+              <p>
+                <%= element.postname %>
+              </p>
+              <a href="/<%= element.postheading%>" class="read-more">
+                Read more <span class="sr-only">about this is some title</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+                </svg>
+              </a>
             </div>
-            <div class="forwar-backward flex">
-            <div class="backward">
-              <a href="<%= PostPerPage-1%> " class="forward-link">Previous Page</a>
-            </div>
-            <% if(post == finalPosts.length){ %>
-              <div class="forward">
-                <a href= "<%= PostPerPage+1%>" class="forward-link">Next Page</a>
-              </div>
-            <% } %>
           </div>
-        </section>
+        </article>
+        <% }); %>
+
+          <div class="forwar-backward flex">
+            <% if(post==finalPosts.length){ %>
+              <div class="forward">
+                <a href="/technews/1" class="forward-link">Next Page</a>
+              </div>
+              <% } %>
+          </div>
+    </section>
       
         </main>
         <%- include('../Template-Engine/follw') %>
@@ -110,7 +106,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     let filedata = `<!DOCTYPE html>
     <html lang="en">
     
-    <head>
+    <head id="head">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><%=slug%>: Creative-Technology</title>
@@ -137,6 +133,30 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   
           <nav class="blog-header-nav">
               <ul class="navlinks">
+                                        <li class="items"><span class="material-symbols-outlined">
+                        SEO
+                    </span>
+                    <div class="items-sub-menu input">
+                        <form id="seoForm">
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" required>
+                    
+                            <label for="description">Description:</label>
+                            <input type="text" id="description" name="description" required>
+                    
+                            <label for="keywords">Keywords:</label>
+                            <input type="text" id="keywords" name="keywords" required>
+                    
+                            <label for="author">Author:</label>
+                            <input type="text" id="author" name="author" required>
+                    
+                            <label for="url">URL:</label>
+                            <input type="url" id="url" name="url" required>
+                    
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </li>
                   <li class="items"><span class="material-symbols-outlined">
                           add
                       </span>
@@ -219,6 +239,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   </div>
       </main>
       <%- include('../Template-Engine/follw') %>
+    </body>
+    <script src="/javascripts/Seo.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.lordicon.com/lordicon.js"></script>
       <script src="/javascripts/Index.js"></script>
@@ -237,9 +259,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       <script src="/javascripts/blog12.js"></script>
       <script src="/javascripts/blog13.js"></script>
       <script src="/javascripts/center.js"></script>
-    </body>
     </html>`
-    let blogfilepath = path.join(__dirname, '..', '..' , 'views','CreateBlogStore', blogfilename);
+    let blogfilepath = path.join(__dirname, '..', '..', 'views', 'CreateBlogStore', blogfilename);
     fs.writeFile(blogfilepath, filedata, (error) => {
       if (error) {
         res.render('error', { error })
@@ -248,29 +269,6 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     res.redirect(`/trial/${blogfilename}`)
   } catch (error) {
     res.render('error', { error })
-  }
-});
-
-
-
-
-router.post('/host', async (req, res) => {
-  let filename = `${req.query.slug}`
-  let initalpath = path.resolve(__dirname, '..', '..' , 'views','CreateBlogStore' , filename);
-  let finalpath = path.resolve(__dirname, '..', '..' , 'views','blogpost' , filename);
-  if (fs.existsSync(initalpath)) {
-    // Move the file to the destination folder
-    fs.rename(initalpath, finalpath, (err) => {
-      if (err) {
-        console.error('Error moving file:', err);
-        res.status(500).send('Error moving file');
-      } else {
-        console.log('File moved successfully');
-        res.status(200).send('File moved successfully');
-      }
-    });
-  } else {
-    res.status(404).send('File not found in source folder');
   }
 });
 

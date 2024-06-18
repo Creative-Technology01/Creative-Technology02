@@ -1,0 +1,222 @@
+@media screen and (max-width: 2652px) {
+    .slide-image{
+        width: max-content;
+    }
+    .slider{
+        width: 38%;
+    }
+    .main_file_tech_news{
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width: 1876px) {
+    .slider{
+        width: 45%;
+    }
+}
+@media screen and (max-width: 1572px) {
+    .slider{
+        width: 52%;
+    }
+    .slide-image{
+        height: 385px;
+    }
+}
+@media screen and (max-width: 1404px) {
+    .slider{
+        width: 46%;
+    }
+    .slide-image{
+        width: 90%;
+        height: 326px;
+    }
+    .ag-courses-item_link{
+        padding: 15px 20px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .main_file_tech_news{
+        flex-direction: column;
+    }
+    .main_file_tech_news_latest_news{
+        width: 100%;
+        margin-top: 100px;
+    }
+    .slider{
+        margin: auto;
+        width: 700px;
+    }
+    .slide-image{
+        height: 300px;
+        width:max-content;
+    }
+}
+@media screen and (max-width: 788px) {
+    .ag-courses_box{
+        grid-template-columns: none;
+    }
+    .ag-courses_item{
+        width: 70%;
+        margin: 30px auto;
+    }
+}
+@media screen and (max-width: 742px) {
+    .slider{
+        margin: auto;
+        width: 570px;
+    }
+    .slide-image{
+        height: 250px;
+        width:max-content;
+    }
+    .main_file_tech_news_latest_news{
+        width: 100%;
+        margin-top: 50px;
+    }
+}
+@media screen and (max-width: 1047px) {
+    .articles{
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+    .article_tech_news_card{
+        width: 400px;
+    }
+    .apple_ai_window_news{
+        flex-direction: column;
+    }
+    .apple_ai_window_news div{
+        flex: none;
+    }
+    .apple_news{
+        width: 534px;
+        margin: 20px auto;
+        height: 600px;
+        
+    }
+    .ai_news{
+        width: 534px;
+        margin: 20px auto;
+        height: 600px;
+        
+    }
+    .window_news{
+        width: 534px;
+        margin: 20px auto;
+        height: 600px;
+        
+    }
+}
+@media screen and (max-width: 634px) {
+    .apple_news{
+        width: 430px;
+        margin: 20px auto;
+        height: 650px;
+    }
+    .ai_news{
+        width: 430px;
+        margin: 20px auto;
+        height: 650px;
+        
+    }
+    .window_news{
+        width: 430px;
+        margin: 20px auto;
+        height: 650px;
+        
+    }
+}
+@media screen and (max-width: 607px) {
+    .slider{
+        width: 404px;
+    }
+    .slide-image{
+        height: 200px;
+    }
+    .follow_subscribe_section{
+        width: 100%;
+        padding: 34px;
+    }
+}
+@media screen and (max-width: 430px) {
+    .slider{
+        width: 360px;
+    }
+    .slide-image{
+        height: 175px;
+    }
+    .ag-courses_item{
+        width: 95%;
+    }
+    .ag-courses-item_link{
+        padding: 15px 20px;
+    }
+    .article_tech_news_card{
+        width: 365px;
+    }
+    .apple_news{
+        width: 355px;
+        height: 650px;
+    }
+    .ai_news{
+        width: 355px;
+        height: 650px;
+        
+    }
+    .window_news{
+        width: 355px;
+        height: 650px;
+        
+    }
+    .follow_subscribe_section{
+        width: 100%;
+        padding: 34px;
+    }
+}
+@media screen and (max-width: 414px) {
+    .slider{
+        width: 355px;
+    }
+    .slide-image{
+        height: 150px;
+    }
+    .article_tech_news_card{
+        width: 345px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .slider{
+        width: 310px;
+    }
+    .slide-image{
+        height: 170px;
+    }
+    .main_file_tech_news_latest_news{
+        margin-top: 25px;
+    }
+    .article_tech_news_card{
+        width: 280px;
+    }
+    .article_tech_news_card h2{
+        height: 80px;
+        -webkit-line-clamp: 3;
+    }
+    .article_tech_news_card p{
+        height: 52px;
+        -webkit-line-clamp: 3;
+    }
+    .apple_news{
+        width: 313px;
+        height: 700px;
+    }
+    .ai_news{
+        width: 313px;
+        height: 700px;
+        
+    }
+    .window_news{
+        width: 313px;
+        height: 700px;
+        
+    }
+}

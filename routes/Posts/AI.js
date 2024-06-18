@@ -9,7 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname , '..','..','views','AI'));
 const paths = path.join(__dirname , '..','..','views','AI')
-console.log(paths)
 app.set('view engine', 'ejs');
 
 router.post('/aiupload', upload.single('AIfile'), async (req, res) => {
@@ -23,12 +22,10 @@ router.post('/aiupload', upload.single('AIfile'), async (req, res) => {
       postheading: req.body.AIheading,
       image: req.file.filename,
     });
-    if (posts % 24 === 0) {
+    if (posts % 24 === 0 && page >= 2) {
       // creating page section
       const fileName = `${page}.ejs`;
       const filePath = path.join(__dirname , '..','..','views','AI', fileName);
-      console.log(fileName)
-      console.log(filePath)
       const filecontent =
         `<!DOCTYPE html>
      <html>
@@ -92,7 +89,6 @@ router.post('/aiupload', upload.single('AIfile'), async (req, res) => {
     
      </body>
       <script src="/javascripts/Index.js"></script>
-
      </html>`
       fs.writeFile(filePath, filecontent, (error) => {
         if (error) {

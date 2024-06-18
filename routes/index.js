@@ -3,8 +3,8 @@ const PostModel = require("./DataBase/users")
 const AndroidModel = require("./DataBase/android")
 const AIModel = require("./DataBase/AI")
 const WindowModel = require("./DataBase/window")
-const iosModel = require("./DataBase/ios")
-const macModel = require("./DataBase/mac")
+const appleModel = require("./DataBase/Apple")
+const technewsModel = require("./DataBase/technews")
 const GadgetsModel = require("./DataBase/gadgets")
 const GamingModel = require("./DataBase/gaming")
 const session = require('express-session');
@@ -34,39 +34,32 @@ router.get('/creative-pritesh/technology-gupta/:slug', async function (req, res,
   res.render(`upload/${req.params.slug}`);
 });
 
-
 // Main section to show created post
 
 router.get('/', async function (req, res, next) {
-  const latestpost = await PostModel.find()
-  const latestposts = latestpost.slice(-6)
+  const technewsposts = await technewsModel.find()
+  const technewspost = technewsposts.slice(-6)
+  const tech_news_post_4card = technewsposts.slice(-4)
+  const tech_news_post_3card = technewsposts.slice(-3)
 
-  const recommmendedpost = latestpost.slice(-12, -9)
+  const ApplePosts = await appleModel.find()
+  const Applepost = await ApplePosts.slice(-6)
 
-  const androidposts = await AndroidModel.find()
-  const androidpost = androidposts.slice(-3)
 
-  const windowposts = await WindowModel.find()
-  const windowpost = windowposts.slice(-3)
+  const aiPosts = await AIModel.find()
+  const aipost = await aiPosts.slice(-6)
 
-  const iosposts = await iosModel.find()
-  const iospost = iosposts.slice(-3)
 
-  const macposts = await macModel.find()
-  const macpost = macposts.slice(-3)
+  const windowPosts = await WindowModel.find()
+  const windowpost = await windowPosts.slice(-6)
 
-  const Gadgetsposts = await GadgetsModel.find()
-  const Gadgetspost = Gadgetsposts.slice(-3)
+  const Posts = await PostModel.find()
+  const post = await Posts.slice(-3)
 
-  const Gamingposts = await GamingModel.find()
-  const Gamingpost = Gamingposts.slice(-3)
-
-  const AIposts = await AIModel.find()
-  const AIpost = AIposts.slice(-3)
-
-  const posts = await PostModel.find().sort({ lastUpdated: -1 });
-  res.render('index', { recommmendedpost, latestposts, androidpost, windowpost, iospost, macpost, Gadgetspost, Gamingpost, posts ,AIpost });
+  const postformore = await Posts.slice(-6)
+  res.render('index', {technewspost , tech_news_post_4card , tech_news_post_3card , Applepost ,aipost , windowpost , post , postformore});
 })
+
 
 
 
@@ -82,7 +75,6 @@ router.get('/creative-technology/:slug', async (req, res, next) => {
   }
 });
 
-// blog page rendering
 
 function stripHtml(html) {
   // Remove specific unwanted patterns first
@@ -165,42 +157,13 @@ function getBlogContentById(slugs) {
   return fs.readFileSync(filePath, 'utf8');
 }
 
-
 router.get('/trial/:slug', (req, res, next) => {
   try {
     const slugs = req.params.slug;
     const slug = slugs.slice(0, -4);
-
-    if (slug == "page") {
-      next()
-      return
-    }
     res.render(`CreateBlogStore/${req.params.slug}`, { slug: slug })
   } catch (error) {
     res.render('error', { error: 'Page Not Found' })
   }
-})
-
-router.post('/data', async (req, res) => {
-  const receivedData = req.body;
-  const URL = req.query.slug;
-  let data = `
-  <!DOCTYPE html>
-  <html lang="en">
-  
-  <head>
-  <%- include('../Template-Engine/blog') %>
-  <body id="HtmlBody">
-    ${receivedData}
-  </body>
-  </html>`
-  let filename = `${URL}`
-  console.log(filename)
-  let filepath = path.join(__dirname, '..' , 'views' , 'CreateBlogStore', filename)
-  fs.writeFile(filepath, data, (error) => {
-    if (error) {
-      res.render('error', { error })
-    }
-  })
 })
 module.exports = router;

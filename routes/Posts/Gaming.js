@@ -21,7 +21,7 @@ router.post('/gaupload', upload.single('gamingfile'), async (req, res) => {
       postheading: req.body.gamingheading,
       image: req.file.filename,
     });
-    if (posts % 24 == 0) {
+    if (posts % 24 === 0 && page >= 2) {
       // creating page section
       const fileName = `${page}.ejs`;
       const filePath = path.join(__dirname, '..', '..' , 'views' , ' Gaming' , fileName);
@@ -39,44 +39,41 @@ router.post('/gaupload', upload.single('gamingfile'), async (req, res) => {
         <main>
       <span class="present-page">page<%= PostPerPage %></span>
           <h2 class="text-center m-tb heading-color">Gaming</h2>
-          <section class="m-b p-tb">
-          <div class="pair-set flex flex-wrap space-evenly">
-              <% finalPosts.reverse().forEach(element=> { %>
-                <div class="flex space-evenly space">
-                  <div class="3pair-set">
-                    <div class="card">
-                      <img src="/images/upload/<%= element.image %>" class="card-img-top p-tb flex justify-center"
-                        alt="...">
-    
-                      <div class="card-body">
-                        <div class="card-title">
-                          <h2>
-                            <%=element.postheading%>
-                              </h2>
-                        </div>
-                        <p class="card-text p-tb  link-bottom">
-                          <%= element.postname %>
-                        </p>
-                        <div class="flex justify-center">
-                          <a href="/<%= element.postheading %>" class="link">Read Mor,</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <% }); %>
+              <section class="m-b p-tb articles">
+      <% finalPosts.reverse().forEach(element=> { %>
+        <article class="article_tech_news_card">
+          <div class="article-wrapper">
+            <figure>
+              <img src="/images/upload/<%= element.image %>" alt="" />
+            </figure>
+            <div class="article-body">
+              <h2>
+                <%= element.postheading%>
+              </h2>
+              <p>
+                <%= element.postname %>
+              </p>
+              <a href="/<%= element.postheading%>" class="read-more">
+                Read more <span class="sr-only">about this is some title</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+                </svg>
+              </a>
             </div>
-            <div class="forwar-backward flex">
-            <div class="backward">
-              <a href="<%= PostPerPage-1%> " class="forward-link">Previous Page</a>
-            </div>
-            <% if(post == finalPosts.length){ %>
-              <div class="forward">
-                <a href= "<%= PostPerPage+1%>" class="forward-link">Next Page</a>
-              </div>
-            <% } %>
           </div>
-        </section>
+        </article>
+        <% }); %>
+
+          <div class="forwar-backward flex">
+            <% if(post==finalPosts.length){ %>
+              <div class="forward">
+                <a href="/technews/1" class="forward-link">Next Page</a>
+              </div>
+              <% } %>
+          </div>
+    </section>
       
         </main>
         <%- include('../Template-Engine/follw') %>
