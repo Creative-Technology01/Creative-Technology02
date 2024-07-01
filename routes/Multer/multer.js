@@ -1,9 +1,10 @@
 const multer = require("multer");
 const { v4: uuidv4 } = require('uuid');
 const path = require("path")
+const filepath = path.join(__dirname , '..' , '..' , 'public' , 'images' ,'upload')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/images/upload')
+        cb(null, filepath)
 },
     filename: function (req, file, cb) {
         const uniqueFilename = uuidv4();
